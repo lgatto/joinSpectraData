@@ -1,0 +1,15 @@
+Package: joinSpectraData
+Title: A Temporary Implementation of joinSpectraData
+Version: 0.0.1
+Authors@R: 
+    person(given = "Laurent", family = "Gatto",
+           email = "laurent.gatto@uclouvain.be",
+           role = "aut",
+           comment = c(ORCID = "0000-0002-1520-2268"))
+Description: A junction to add new spectra data to a Spectra object.
+Depends: Spectra
+License: Artistic-2.0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
