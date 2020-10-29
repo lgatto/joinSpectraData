@@ -209,7 +209,7 @@ mergeDFrame <- function (x, y,
 #' 
 #' @param object A [Spectra()] object.
 #' 
-#' @param y A [DataFrame()] with spectra data to be merged with
+#' @param y A `DataFrame` with spectra data to be merged with
 #'     `spectraData(object)`.
 #' 
 #' @param by.x by.x Specification of the columns used for merging. See
@@ -223,6 +223,33 @@ mergeDFrame <- function (x, y,
 #'
 #' @author Laurent Gatto. Code of `joinSpectraData:::mergeDFrame()`
 #'     based on `base::merge,data.frame,data.frame`.
+#'
+#'
+#' @examples
+#'
+#' library("Spectra")
+#' library("msdata")
+#' library("magrittr")
+#' library("PSM")
+#'
+#' ## Creat a Spectra object
+#' ms <- Spectra(msdata::proteomics(pattern = "2014", full.names = TRUE)) %>%
+#'     filterMsLevel(2L) %>%
+#'     dropNaSpectraVariables()
+#' spectraVariables(ms)
+#' 
+#' ## Additional spectra variables
+#' id <- readPSMs(msdata::ident(full.names = TRUE)) %>%
+#'     filterPSMs()
+#' id$modLocation <- NULL
+#' id <- unique(id)
+#' names(id)
+#'
+#' ## Add the new spectra variables
+#' ms <- joinSpectraData(ms, id,
+#'                       by.x = "spectrumId",
+#'                       by.y = "spectrumID")
+#' spectraVariables(ms)
 joinSpectraData <- function(object, y,
                             by.x = "spectrumId",
                             by.y = NULL,

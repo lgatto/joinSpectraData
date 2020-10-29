@@ -4,10 +4,14 @@ Version: 0.0.1
 Authors@R: 
     person(given = "Laurent", family = "Gatto",
            email = "laurent.gatto@uclouvain.be",
-           role = "aut",
+           role = c("aut", "cre"),	
            comment = c(ORCID = "0000-0002-1520-2268"))
 Description: A junction to add new spectra data to a Spectra object.
 Depends: Spectra
+Suggests:
+   msdata,
+   PSM,
+   magrittr   
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true

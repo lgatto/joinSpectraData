@@ -15,7 +15,7 @@ joinSpectraData(
 \arguments{
 \item{object}{A \code{\link[=Spectra]{Spectra()}} object.}
 
-\item{y}{A \code{\link[=DataFrame]{DataFrame()}} with spectra data to be merged with
+\item{y}{A \code{DataFrame} with spectra data to be merged with
 \code{spectraData(object)}.}
 
 \item{by.x}{by.x Specification of the columns used for merging. See
@@ -44,6 +44,26 @@ For details and background:
 \item https://github.com/rformassspectrometry/Spectra/issues/149
 \item https://github.com/Bioconductor/S4Vectors/issues/73
 }
+}
+\examples{
+
+library("Spectra")
+library("msdata")
+library("magrittr")
+library("PSM")
+
+ms <- Spectra(msdata::proteomics(pattern = "2014", full.names = TRUE)) \%>\%
+    filterMsLevel(2L) \%>\%
+    dropNaSpectraVariables()
+
+id <- readPSMs(msdata::ident(full.names = TRUE)) \%>\%
+    filterPSMs()
+id$modLocation <- NULL
+id <- unique(id)
+
+ms <- joinSpectraData(ms, id,
+                      by.x = "spectrumId",
+                      by.y = "spectrumID")
 }
 \author{
 Laurent Gatto. Code of \code{joinSpectraData:::mergeDFrame()}
