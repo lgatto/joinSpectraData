@@ -2,3 +2,4 @@
 
 export(joinSpectraData)
 import(Spectra)
+importFrom(methods,as)
